@@ -39,3 +39,22 @@ const getUserData = () => {
 };
 
 getUserData();
+
+const contContact = document.getElementById('contContact');
+let lastKnownScrollPosition = 0;
+
+const doSomething = (scrollPos) => {
+  if (scrollPos > contContact.offsetTop) {
+    contContact.style.position = 'fixed';
+    contContact.style.top = '0';
+  } else {
+    contContact.style.position = 'static';
+  }
+};
+
+window.addEventListener('scroll', () => {
+  lastKnownScrollPosition = window.scrollY;
+  window.requestAnimationFrame(() => {
+    doSomething(lastKnownScrollPosition);
+  });
+});
